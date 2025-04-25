@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sensor Data</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Sensor Data</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Voltage (V)</th>
+                <th>Current (A)</th>
+                <th>Power (W)</th>
+                <th>Temperature (°C)</th>
+                <th>Humidity (%)</th>
+            </tr>
+        </thead>
+        <tbody id="sensor-data">
+        </tbody>
+    </table>
+
+    <script>
+        function fetchSensorData() {
+            $.get('/sensor-data/get/', function(data) {
+                let rows = '';
+                data.forEach(function(item) {
+                    rows += `<tr>
+                        <td>${item.timestamp}</td>
+                        <td>${item.voltage}</td>
+                        <td>${item.current}</td>
+                        <td>${item.power}</td>
+                        <td>${item.temperature || '-'}</td>
+                        <td>${item.humidity || '-'}</td>
+                    </tr>`;
+                });
+                $('#sensor-data').html(rows);
+            });
+        }
+
+        // Fetch data initially and every 10 seconds
+        fetchSensorData();
+        setInterval(fetchSensorData, 10000);
+    </script>
+</body>
+</html>
