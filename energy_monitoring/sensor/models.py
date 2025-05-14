@@ -11,13 +11,16 @@ class Appliance(models.Model):
 
 class SensorData(models.Model):
     id = models.AutoField(primary_key=True)
-    voltage = models.FloatField(null=True)
-    current = models.FloatField(null=True)
-    power = models.FloatField(null=True)
-    temperature = models.FloatField(null=True)
-    humidity = models.FloatField(null=True)
+    voltage = models.FloatField()
+    current = models.FloatField()
+    power = models.FloatField()
+    power_factor = models.FloatField()
+    temperature = models.FloatField()
+    humidity = models.FloatField()
+    device_status = models.CharField(max_length=10, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-
+    
+    
     class Meta:
         db_table = 'sensor_sensordata'  
         managed = False  

@@ -15,6 +15,7 @@
                 <th>Power (W)</th>
                 <th>Temperature (°C)</th>
                 <th>Humidity (%)</th>
+                <th>Device Status</th>
             </tr>
         </thead>
         <tbody id="sensor-data">
@@ -33,6 +34,7 @@
                         <td>${item.power}</td>
                         <td>${item.temperature || '-'}</td>
                         <td>${item.humidity || '-'}</td>
+                        <td>${item.device_status || '-'}</td>
                     </tr>`;
                 });
                 $('#sensor-data').html(rows);
