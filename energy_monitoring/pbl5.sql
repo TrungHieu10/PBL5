@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 26, 2025 lúc 04:53 AM
+-- Thời gian đã tạo: Th5 14, 2025 lúc 11:00 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -251,15 +251,32 @@ CREATE TABLE `sensor_sensordata` (
   `power` double DEFAULT NULL,
   `temperature` double DEFAULT NULL,
   `humidity` double DEFAULT NULL,
-  `timestamp` datetime(6) NOT NULL
+  `timestamp` datetime(6) NOT NULL,
+  `device_status` varchar(10) DEFAULT NULL,
+  `power_factor` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `sensor_sensordata`
 --
 
-INSERT INTO `sensor_sensordata` (`id`, `voltage`, `current`, `power`, `temperature`, `humidity`, `timestamp`) VALUES
-(1, 220.5, 1.2, 264.6, 25, 60, '2025-03-26 16:29:50.985259');
+INSERT INTO `sensor_sensordata` (`id`, `voltage`, `current`, `power`, `temperature`, `humidity`, `timestamp`, `device_status`, `power_factor`) VALUES
+(1, 220.5, 1.2, 264.6, 25, 60, '2025-03-26 16:29:50.985259', NULL, NULL),
+(2, 218.9, 0.27, 30.4, 32.8, 74, '2025-05-13 14:22:14.611633', 'on', NULL),
+(3, 220, 0.3, 18.7, 28.5, 73, '2025-05-13 15:09:24.527317', 'on', NULL),
+(4, 220, 0.18, 17.7, 28.5, 73, '2025-05-13 15:11:24.905412', 'on', NULL),
+(5, 227.1, 0.03, 1.1, 28.9, 72, '2025-05-14 07:55:31.602906', 'on', NULL),
+(6, 227.5, 0.03, 1, 28.9, 72, '2025-05-14 07:57:32.002276', 'on', NULL),
+(7, 227.3, 0.03, 0.9, 28.5, 72, '2025-05-14 08:05:33.541614', 'on', NULL),
+(8, 227.5, 0.03, 1.1, 28.5, 72, '2025-05-14 08:07:34.151246', 'on', NULL),
+(9, 227.3, 0.12, 14.8, 28.5, 73, '2025-05-14 08:24:53.263414', 'on', NULL),
+(10, 227.2, 0.12, 14.5, 28.5, 72, '2025-05-14 08:25:53.840408', 'on', NULL),
+(11, 227.7, 0.1, 13.3, 28.5, 73, '2025-05-14 08:37:32.394154', 'on', NULL),
+(12, 227.3, 0.1, 13.4, 28.5, 73, '2025-05-14 08:38:32.569457', 'on', NULL),
+(13, 227.5, 0.11, 13.5, 28, 72, '2025-05-14 08:41:38.186402', 'on', 0.54),
+(14, 227.7, 0, 0, 28, 73, '2025-05-14 08:56:36.400519', 'off', 0),
+(15, 227.7, 0, 0, 28, 73, '2025-05-14 08:57:36.989936', 'off', 0),
+(16, 227.5, 0.09, 10.9, 28, 73, '2025-05-14 08:58:37.410592', 'on', 0.53);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -406,7 +423,7 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT cho bảng `sensor_sensordata`
 --
 ALTER TABLE `sensor_sensordata`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
